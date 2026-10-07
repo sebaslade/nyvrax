@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nyvrax Finding",
+  "type": "object",
+  "required": [
+    "id",
+    "rule_id",
+    "title",
+    "description",
+    "severity",
+    "confidence",
+    "category"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "rule_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "severity": {
+      "enum": [
+        "critical",
+        "high",
+        "medium",
+        "low",
+        "info"
+      ]
+    },
+    "confidence": {
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "category": {
+      "type": "string"
+    },
+    "location": {
+      "type": ["object", "null"]
+    },
+    "evidence": {
+      "type": ["string", "null"]
+    },
+    "remediation": {
+      "type": ["string", "null"]
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

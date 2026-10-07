@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nyvrax Scan Report",
+  "type": "object",
+  "required": [
+    "engine",
+    "verdict",
+    "findings",
+    "summary",
+    "scanned_files",
+    "rules_executed"
+  ],
+  "properties": {
+    "engine": {
+      "const": "nyvrax"
+    },
+    "verdict": {
+      "enum": [
+        "pass",
+        "warn",
+        "block"
+      ]
+    },
+    "findings": {
+      "type": "array"
+    },
+    "summary": {
+      "type": "object"
+    },
+    "scanned_files": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "rules_executed": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}
