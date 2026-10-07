@@ -1,9 +1,3 @@
-
----
-
-# 21. `SECURITY.md`
-
-```markdown
 # Security Policy
 
 Nyvrax is security tooling. Vulnerabilities affecting Nyvrax itself should not be disclosed through a public issue when doing so would expose users to unnecessary risk.
