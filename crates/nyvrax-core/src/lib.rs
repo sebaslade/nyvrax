@@ -10,5 +10,5 @@ pub use context::{ProjectInfo, ScanContext, ScanMode};
 pub use engine::{Engine, ScanResult, ScanSummary};
 pub use error::NyvraxError;
 pub use findings::{Confidence, Finding, FindingCategory, FindingLocation, Severity, Verdict};
-pub use git::{ChangedFile, ChangedLine, GitDiff};
+pub use git::{ChangedFile, ChangedLine, DiffHunk, DiffLine, DiffLineKind, GitDiff};
 pub use rules::NyvraxRule;

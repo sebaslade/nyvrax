@@ -2,6 +2,8 @@ use std::path::PathBuf;
 
 use serde::{Deserialize, Serialize};
 
+use super::DiffHunk;
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ChangedLine {
     pub line_number: Option<usize>,
@@ -11,8 +13,11 @@ pub struct ChangedLine {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ChangedFile {
     pub path: PathBuf,
+
     pub additions: Vec<ChangedLine>,
     pub deletions: Vec<ChangedLine>,
+
+    pub hunks: Vec<DiffHunk>,
 }
 
 impl ChangedFile {
@@ -21,6 +26,7 @@ impl ChangedFile {
             path: path.into(),
             additions: Vec::new(),
             deletions: Vec::new(),
+            hunks: Vec::new(),
         }
     }
 
