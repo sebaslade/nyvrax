@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::{
     Finding, NyvraxError, NyvraxRule, ScanContext, Severity, Verdict,
-    rules::secrets::HardcodedSecretRule,
+    rules::{auth::RemovedAuthGuardRule, secrets::HardcodedSecretRule},
 };
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
@@ -58,7 +58,10 @@ pub struct Engine {
 impl Default for Engine {
     fn default() -> Self {
         Self {
-            rules: vec![Box::new(HardcodedSecretRule)],
+            rules: vec![
+                Box::new(HardcodedSecretRule),
+                Box::new(RemovedAuthGuardRule),
+            ],
         }
     }
 }

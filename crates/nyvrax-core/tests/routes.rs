@@ -112,3 +112,36 @@ index 1111111..2222222 100644
 
     assert!(after.handlers[1].starts_with("async (req, res) =>",));
 }
+
+#[test]
+fn detects_added_handler_to_existing_route() {
+    let diff = r#"diff --git a/src/routes.ts b/src/routes.ts
+index 1111111..2222222 100644
+--- a/src/routes.ts
++++ b/src/routes.ts
+@@ -10,4 +10,5 @@
+ router.get(
+   "/orders/:id",
++  requireAuth,
+   getOrder,
+ );
+"#;
+
+    let files = parse_diff(diff).expect("diff should parse");
+
+    let context = ScanContext::changed(PathBuf::from("."), files);
+
+    let routes = detect_route_surfaces(&context);
+
+    assert_eq!(routes.len(), 1,);
+
+    let route = &routes[0];
+
+    let before = route.before.as_ref().expect("route should exist before");
+
+    let after = route.after.as_ref().expect("route should exist after");
+
+    assert_eq!(before.handlers, vec!["getOrder",],);
+
+    assert_eq!(after.handlers, vec!["requireAuth", "getOrder",],);
+}
